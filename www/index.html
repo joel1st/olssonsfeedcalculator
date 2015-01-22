@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Olsson's Northern Feeding Calculator</title>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="olssonCalculator">
+
+    <ion-pane>
+      <ion-content overflow-scroll="false" has-bouncing="true">
+        <div class="main-container clearfix" ng-controller="calculatorCtrl">
+          <div class="clearfix" style="width:100%;margin-top:10px">
+            <div class="logo-holder">
+              <img src="img/logo.png" class="logo" style="margin-left:3px;width:100%"/>
+            </div>
+            <div class="olsson-info" style="width:auto">
+              <h2 class="phone-number">Toll Free: 1800 804 096</h2>
+              <h2 class="phone-number">David Mosch: 0427 596 555</h2>
+              <h2 style="margin-bottom:25px;font-size:1.6em;margin-top: -9px;text-align:left;">Olsson's Northern Feeding Calculator</h2>
+            </div>
+          </div>
+          <div style="text-align:center" class="clearfix">
+            <span class="field-fill" style="top: -18px;margin-bottom: 8px;display:block">Change fields to suit your property.</span>
+            <div class="cattle-numbers">
+              <div class="reset" ng-click="resetApp()">Reset Data</div> Cattle Numbers: <input ng-model="constant.totalCattle" type="number"/>
+            </div>
+            <div>
+              <div class="cattle-type" ng-click="classification = 'breeder'" ng-class="{'selected':classification==='breeder'}">Breeder</div>
+              <div class="cattle-type" ng-click="classification = 'grower'" ng-class="{'selected':classification==='grower'}">Grower</div>
+              <div class="cattle-type" ng-click="classification = 'finisher'" ng-class="{'selected':classification==='finisher'}">Finisher</div>
+            </div>
+            <div class="clearfix subsetting-chooser" ng-show="classification === 'breeder'">
+              <div>
+                <div class="left-col">Current Calving Rate? (%):</div>
+                <div class="right-col"><input ng-model="constant.breeder.competitor.carveRate" type="number"/></div>
+              </div>
+              <div>
+                 <div class="left-col">Typical Calving Rate on Olsson's (%):</div>
+                 <div class="right-col"><input ng-model="constant.breeder.olssons.carveRate" type="number"/></div>
+              </div>
+              <div style="margin-bottom:-5px">
+                <div class="left-col">Calf Value ($):</div>
+                <div class="right-col"><input ng-model="constant.breeder.salePrice" type="number"/></div>
+              </div>
+            </div>
+            <div class="clearfix subsetting-chooser" ng-show="classification === 'finisher'">
+              <div style="margin-bottom:0px;text-align:center">
+                Live Weight Sale Price Per KG ($): <input ng-model="constant.finisher.salePrice" type="number"/>
+              </div>
+            </div>
+          </div>
+
+          <table class="table table-striped clearfix" style="margin-top:10px;">
+            <thead>
+              <tr >
+                <th class="first-col"><span class="text-indent"></span></th>
+                <th class="second-col">{{constant[classification || def].competitor.title}}</th>
+                <th style="third-col">Olsson's Blocks</th>
+                <th style="fourth-col">Feed Duration (days)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="text-indent" ng-hide="classification === 'finisher'">Grams Per Head Per Day Consumption (Dry Season)</span>
+                  <span class="text-indent" ng-show="classification === 'finisher'">Grams Per Head Per Day Consumption</span>
+                </td>
+                <td><input ng-model="constant[classification || def].competitor.gramsPerHeadDry" type="number"/></td>
+                <td><input ng-model="constant[classification || def].olssons.gramsPerHeadDry" type="number"/></td>
+                <td><input ng-model="constant[classification || def].seasonDuration.dry" type="number"/></td>
+              </tr>
+              <tr ng-hide="classification === 'finisher'">
+                <td>
+                  <span class="text-indent">Grams Per Head Per Day Consumption (Wet Season)</span>
+                </td>
+                <td><input ng-model="constant[classification || def].competitor.gramsPerHeadWet" type="number"/></td>
+                <td><input ng-model="constant[classification || def].olssons.gramsPerHeadWet" type="number"/></td>
+                <td><input ng-model="constant[classification || def].seasonDuration.wet" type="number"/></td>
+              </tr>
+              <tr>
+                <td><span class="text-indent">Feed Cost Per Kilogram ($)</span></td>                      
+                <td><input ng-model="constant[classification || def].competitor.cost" type="number"/></td>
+                <td><input ng-model="constant[classification || def].olssons.cost" type="number"/></td>
+                <td> </td>
+              </tr>
+              <tr>
+                <td><span class="text-indent">Labour Cost per Week ($)</span></td>                      
+                <td><input ng-model="constant[classification || def].competitor.labourCost" ng-change="manualChange('competitor')" type="number"/></td>
+                <td><input ng-model="constant[classification || def].olssons.labourCost" ng-change="manualChange('olssons')" type="number"/></td>
+                <td></td>
+              </tr>
+              <tr ng-show="classification === 'finisher'">
+                <td><span class="text-indent">Live Weight Gain (gm/H/d)</span></td>                      
+                <td><input ng-model="constant[classification || def].competitor.liveWeightGain" ng-change="manualChange('competitor')" type="number"/></td>
+                <td><input ng-model="constant[classification || def].olssons.liveWeightGain" ng-change="manualChange('olssons')" type="number"/></td>
+                <td></td>
+              </tr>
+              <tr style="border-bottom:2px solid black;border-top:1px solid black">
+                <td><span class="text-indent" style="font-weight:bold;rgb(55, 165, 96)">Total Cost</span></td>
+                <td>
+                  <span ng-show="constant[classification || def].competitor.total" style="font-weight:bold">
+                    ${{constant[classification || def].competitor.total | number:0}}
+                  </span>
+                </td>
+                <td>
+                  <span ng-show="constant[classification || def].olssons.total" style="font-weight:bold">
+                    ${{constant[classification || def].olssons.total | number:0}}
+                  </span>
+                </td>
+                <td></td>
+              </tr>         
+            </tbody>
+          </table>
+			<div class="results">
+	          <div class="savings clearfix" ng-if="constant[classification || def].competitor.total && constant[classification || def].olssons.total">
+	            <h2>Olsson's Savings</h2>
+	            <div class="clearfix" style="font-size:1.2em;">
+	              <div class="left-col">Overall Savings: </div><div class="right-col">${{(constant[classification || def].competitor.total-constant[classification || def].olssons.total) | number:2}}</div>
+	              <br style="margin-bottom:15px"/>
+	              <div class="left-col">Percent Saved:  </div><div class="right-col">{{(((constant[classification || def].competitor.total-constant[classification || def].olssons.total)/constant[classification || def].competitor.total)*100) | number:2}}%</div>
+	            </div>
+	          </div>
+	        
+	          <div class="savings clearfix" ng-if="calfEarnings > 0 && classification === 'breeder'">
+	            <h2>Extra Calving Income</h2>
+	            <div class="clearfix" style="font-size:1.2em;">
+	              <div style="text-align:center;">
+	              Potential if fed all year round with Olsson's Free Choice.
+	              </div>
+	              <div class="left-col">
+	                Extra Calving Income:
+	              </div>
+	              <div  class="right-col">
+	                ${{calfEarnings | number:2}}
+	              </div>
+	            </div>
+	          
+	            <div class="savings clearfix" style="text-align:center;" ng-if="constant.breeder.competitor.total && constant.breeder.olssons.total">
+	              <h2>Total Savings + Extra Calves (Income)</h2>
+	              <span style="font-weight:bold;font-size:1.2em;">${{(calfEarnings+(constant.breeder.competitor.total-constant.breeder.olssons.total)) | number:2}}</span>
+	            </div>
+	          </div>
+	        
+	          <div class="savings clearfix" ng-if="extraBeef.kg > 0 && classification === 'finisher'">
+	            <h2>Extra Beef Production</h2>
+	            <div class="clearfix" style="font-size:1.2em;">
+	              <div class="left-col">Extra Beef KG: </div>
+	              <div  class="right-col">{{extraBeef.kg | number:2}}kg</div>
+	              <div class="left-col">Extra Beef Income: </div>
+	              <div  class="right-col">${{extraBeef.money | number:2}}</div>
+	            </div>
+	          
+	            <div class="savings clearfix" style="text-align:center;" ng-if="constant.finisher.competitor.total && constant.finisher.olssons.total">
+	              <h2>Total Savings + Extra Beef Production</h2>
+	              <span style="font-weight:bold;font-size:1.2em;">${{(extraBeef.money+(constant.finisher.competitor.total-constant.finisher.olssons.total)) | number:2}}</span>
+	            </div>
+	          </div>
+	          <div class="seasonal-conditions">
+	            <span class="field-fill">Seasonal conditions and pasture quality may vary intake and effect outcomes.</span>
+	          </div>
+          </div>
+        </div>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>

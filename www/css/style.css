@@ -1,0 +1,161 @@
+/* Empty. Add your own CSS if you like */
+body{
+	background-color:black;
+}
+.pane, .view{
+	background:none;
+}
+a {
+color: #89f5a2;
+}
+a:hover, a:focus {
+color: #FCFF90;
+/* text-decoration: underline; */
+}
+.results{
+	padding-left:5px;padding-right:5px;
+}
+.seasonal-conditions{
+	margin-top:25px;text-align:center;
+}
+h2{
+	font-weight: bold;
+color: rgb(0, 121, 121);
+font-size: 1.5em;
+margin-top:25px;
+margin-bottom:5px;
+text-align:center;
+}
+.table {
+table-layout: fixed;
+}
+input[type="number"]{
+	width: 100%;
+max-width: 100px;
+color: black;
+font-weight: bold;
+padding:3px;
+min-width: 55px;
+border:1px solid grey;
+display:inline-block;
+}
+td input[type="number"]{
+ margin:auto;
+}
+input[type="radio"]{
+	margin-left:20px;
+	margin-right:10px;
+}
+td, th{
+	text-align:center;
+	vertical-align: middle !important;
+}
+thead{
+	background-color: #007979;
+color: white;
+}
+.table{
+	margin-bottom:0px;
+}
+.text-indent{
+	font-size:0.9em;
+}
+.main-container{
+	margin-top: 20px;
+	margin-bottom:20px;
+	border-top: 8px solid black;
+	max-width:650px;margin:auto;background-color:rgb(240,240,240);
+}
+.logo{
+	margin: auto;
+	display: block;
+	width: 140px;"
+}
+.logo-holder{
+	width: 30%;
+max-width: 130px;
+float: left;
+padding: 5px;
+margin-right: 15px;
+min-height: 90px;
+}
+.subsetting-chooser{
+	margin-top: 10px;
+background-color: rgb(224, 224, 224);
+padding: 10px;
+border: 1px solid rgb(197, 197, 197);
+}
+.subsetting-chooser > div{
+	display:block;float:left;
+	width:100%;
+}
+.field-fill{
+	display:block;position:relative;top:-12px;margin-bottom:15px
+}
+.cattle-numbers{
+	display:inline-block;margin-bottom:10px
+}
+.first-col{
+	width:30%;min-width:98px;
+}
+.second-col, .third-col, .fourth-col{
+	width:23.3%;
+}
+.left-col{
+	width:55%;float:left;text-align:right;padding:4px;
+}
+.right-col{
+	font-weight:bold;float:right;width:45%;padding:4px;text-align: left;
+}
+.right-col input{
+	position:relative;
+	top:-5px;
+}
+.table{
+	table-layout:fixed;
+}
+.phone-number{
+	margin-bottom: 15px;
+margin-top: -10px;
+font-size: 1em;
+color: rgb(86, 86, 86);
+text-align:left;
+}
+.savings{
+	margin-top:20px;
+}
+
+
+.cattle-type, .reset{
+	padding: 7px;
+	background-color:green;
+	display: inline-block;
+	position: relative;
+	top: 1px;
+	margin-right: 12px;
+	cursor:pointer;
+}
+.cattle-type{
+	background-color: rgb(110, 110, 110);
+	color: white;
+}
+.cattle-type:active, .cattle-type:hover, .selected{
+	background-color:#007979;
+	color:white;
+}
+.reset{
+	background-color: rgb(197, 81, 81);
+	color: rgb(255, 239, 208);
+}
+.reset:active, .reset:hover{
+	background-color:rgb(236, 110, 110);
+	color:white;
+}
+@media (min-width: 546px) {
+	.olsson-info{
+		padding-top: 12px;
+	}
+	.logo-holder{
+		margin-left: 3%
+	}
+}
