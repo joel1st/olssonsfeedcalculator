@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.calculator941834" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-  <name>calculator</name>
+  <icon src="icon.png" />
+  <name>Olsson's Feed Calculator</name>
   <description>
-        An Ionic Framework and Cordova project.
+        A calculator for determining feed costs and savings using Olsson's free choice. 
     </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+  <author email="joel_1st@hotmail.com" href="http://olssons.com.au/">
+      Joel Olsson
     </author>
   <content src="index.html"/>
   <access origin="*"/>
