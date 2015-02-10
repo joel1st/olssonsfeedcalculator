@@ -48,10 +48,6 @@ olssonCalculator.directive('input', function($timeout, $window){
                 },70);        
             });
 
-            angular.element($window).bind('scroll', function(){
-              element.blur();
-            });
-
             element.bind('keydown', function(e){
                 if(e.which === 13 || e.keyCode === 13){
                   element[0].blur();
@@ -60,6 +56,12 @@ olssonCalculator.directive('input', function($timeout, $window){
         }
     }
 });
+
+angular.element($window).bind('scroll', function(){
+  keyboardShouldBeShown = false;
+  cordova.plugins.Keyboard.close();
+});
+
 
 olssonCalculator.controller('calculatorCtrl', ['$scope','$timeout', '$window', function($scope, $timeout, $window){
 
