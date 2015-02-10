@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.calculator941834" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+  <gap:plugin name="com.ionic.keyboard" version="1.0.3" />
   <icon src="icon.png"/>
   <icon src="res/icon/ios/icon57.png" gap:platform="ios" width="57" height="57"/>
   <icon src="res/icon/ios/icon72.png" gap:platform="ios" width="72" height="72"/>
