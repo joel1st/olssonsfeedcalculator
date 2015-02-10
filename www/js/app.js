@@ -16,7 +16,7 @@ var olssonCalculator = angular.module('olssonCalculator', ['ionic'])
     }
   });
 })
-/*
+
 var keyboardShouldBeShown = false;
 olssonCalculator.directive('input', function($timeout, $window){
   
@@ -54,7 +54,7 @@ olssonCalculator.directive('input', function($timeout, $window){
             });   
         }
     }
-});*/
+});
 
 olssonCalculator.controller('calculatorCtrl', ['$scope','$timeout', '$window', function($scope, $timeout, $window){
 
