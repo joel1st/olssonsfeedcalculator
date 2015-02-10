@@ -16,7 +16,7 @@ var olssonCalculator = angular.module('olssonCalculator', ['ionic'])
     }
   });
 })
-
+/*
 var keyboardShouldBeShown = false;
 olssonCalculator.directive('input', function($timeout, $window){
   
@@ -54,7 +54,7 @@ olssonCalculator.directive('input', function($timeout, $window){
             });   
         }
     }
-});
+});*/
 
 olssonCalculator.controller('calculatorCtrl', ['$scope','$timeout', '$window', function($scope, $timeout, $window){
 
@@ -201,8 +201,8 @@ olssonCalculator.controller('calculatorCtrl', ['$scope','$timeout', '$window', f
 
       $scope.constant[classificationType].seasonDuration.dry = ($scope.constant[classificationType].seasonDuration.dry >= 0) ? $scope.constant[classificationType].seasonDuration.dry : null;
       $scope.constant[classificationType].seasonDuration.wet = ($scope.constant[classificationType].seasonDuration.wet >= 0) ? $scope.constant[classificationType].seasonDuration.wet : null;
-      $scope.constant[classificationType][type].gramsPerHeadDry = $scope.constant[classificationType][type].gramsPerHeadDry || 0;
-      $scope.constant[classificationType][type].gramsPerHeadWet = $scope.constant[classificationType][type].gramsPerHeadWet || 0;
+      $scope.constant[classificationType][type].gramsPerHeadDry = ($scope.constant[classificationType][type].gramsPerHeadDry >= 0) ? $scope.constant[classificationType][type].gramsPerHeadDry : null;
+      $scope.constant[classificationType][type].gramsPerHeadWet = ($scope.constant[classificationType][type].gramsPerHeadWet >= 0) ? $scope.constant[classificationType][type].gramsPerHeadWet : null;
       var feedCostDry = $scope.constant.totalCattle*($scope.constant[classificationType][type].gramsPerHeadDry/1000)*$scope.constant[classificationType][type].cost;
       var feedCostWet = $scope.constant.totalCattle*($scope.constant[classificationType][type].gramsPerHeadWet/1000)*$scope.constant[classificationType][type].cost;
 
