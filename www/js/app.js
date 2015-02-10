@@ -19,10 +19,10 @@ var olssonCalculator = angular.module('olssonCalculator', ['ionic'])
 
 var keyboardShouldBeShown = false;
 olssonCalculator.directive('input', function($timeout, $window){
-  
+  /*
   angular.element($window).bind('scroll', function(){
        element[0].blur();
-  }); 
+  });*/ 
     return {
         restrict: 'E',
         scope: {},
@@ -33,6 +33,7 @@ olssonCalculator.directive('input', function($timeout, $window){
                 keyboardShouldBeShown = true;
                if(!cordova.plugins.Keyboard.isVisible){      
                   cordova.plugins.Keyboard.show();
+                  console.log('show');
                 }
               },30);
 
@@ -43,6 +44,7 @@ olssonCalculator.directive('input', function($timeout, $window){
               $timeout(function(){
                   if(!keyboardShouldBeShown){
                     cordova.plugins.Keyboard.close();
+                    console.log('hide');
                   }
                 },70);
                 
