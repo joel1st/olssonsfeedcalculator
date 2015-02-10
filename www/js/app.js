@@ -35,10 +35,9 @@ olssonCalculator.directive('input', function($timeout, $window){
                   cordova.plugins.Keyboard.show();
                   console.log('show');
                 }
-              },30);
-
-                       
+              },30);          
             });
+
             element.bind('blur', function(e){
               keyboardShouldBeShown = false
               $timeout(function(){
@@ -46,9 +45,13 @@ olssonCalculator.directive('input', function($timeout, $window){
                     cordova.plugins.Keyboard.close();
                     console.log('hide');
                   }
-                },70);
-                
+                },70);        
             });
+
+            angular.element($window).bind('scroll', function(){
+              element.blur();
+            });
+
             element.bind('keydown', function(e){
                 if(e.which === 13 || e.keyCode === 13){
                   element[0].blur();
