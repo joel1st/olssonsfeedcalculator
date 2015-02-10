@@ -19,10 +19,7 @@ var olssonCalculator = angular.module('olssonCalculator', ['ionic'])
 
 var keyboardShouldBeShown = false;
 olssonCalculator.directive('input', function($timeout, $window){
-  angular.element($window).bind('scroll', function(){
-    keyboardShouldBeShown = false;
-    cordova.plugins.Keyboard.close();
-  });
+
     return {
         restrict: 'E',
         scope: {},
@@ -61,7 +58,10 @@ olssonCalculator.directive('input', function($timeout, $window){
 
 
 olssonCalculator.controller('calculatorCtrl', ['$scope','$timeout', '$window', function($scope, $timeout, $window){
-
+  angular.element($window).bind('scroll', function(){
+    keyboardShouldBeShown = false;
+    cordova.plugins.Keyboard.close();
+  });
 
 
   $scope.classification = '';
