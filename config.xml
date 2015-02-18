@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.calculator941834" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
   <gap:plugin name="com.ionic.keyboard" version="1.0.3" />
+  <gap:plugin name="org.apache.cordova.splashscreen" version="0.3.4" />
   <icon src="icon.png"/>
   <icon src="res/icon/ios/icon57.png" gap:platform="ios" width="57" height="57"/>
   <icon src="res/icon/ios/icon72.png" gap:platform="ios" width="72" height="72"/>
@@ -16,6 +17,10 @@
     </author>
   <content src="index.html"/>
   <access origin="*"/>
+  <preference name="fullscreen" value="false" />
+  <preference name="auto-hide-splash-screen" value="true" />  
+  <preference name="AutoHideSplashScreen" value="true" />
+  <preference name="ios-statusbarstyle" value="black-opaque" />
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>

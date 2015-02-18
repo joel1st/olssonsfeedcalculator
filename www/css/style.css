@@ -5,18 +5,15 @@ body{
 .pane, .view{
 	background:none;
 }
-a {
-color: #89f5a2;
-}
-a:hover, a:focus {
-color: #FCFF90;
-/* text-decoration: underline; */
-}
 .results{
 	padding-left:5px;padding-right:5px;
 }
 .seasonal-conditions{
 	margin-top:25px;text-align:center;
+}
+
+a:hover{
+	text-decoration: none;
 }
 h2{
 	font-weight: bold;
@@ -63,7 +60,7 @@ color: white;
 .main-container{
 	margin-top: 20px;
 	margin-bottom:20px;
-	border-top: 8px solid black;
+	border-top: 2px solid black;
 	max-width:650px;margin:auto;background-color:rgb(240,240,240);
 }
 .logo{
